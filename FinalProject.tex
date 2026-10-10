@@ -1,0 +1,128 @@
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[margin=1.8cm]{geometry}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{parskip}
+\usepackage{url}
+
+\begin{document}
+
+\begin{titlepage}
+    \begin{center}
+        \includegraphics[width=8cm]{MSP-logo.jpg} 
+        \vspace{1cm}
+        \vspace{1cm}
+        
+        \textbf{\LARGE Bookmaker Confidence and Match Dominance in Tennis}\\
+        \vspace{0.5cm}
+        \textbf{\LARGE Can bookmaker odds tell us something about how dominant a player will be during a tennis match?}
+        
+        \vspace{1.5cm}
+        
+        \textbf{\Large Davide Capurro (ID6382558)}
+        
+        \vfill
+        
+        \large Date: \today
+        
+    \end{center}
+\end{titlepage}
+
+\newpage
+
+\section{Scientific Question and Context}
+
+This study investigates whether greater bookmaker confidence in the eventual winner of a tennis match corresponds to a more dominant victory. The research question is: \textit{Can bookmaker odds tell us something about how dominant a player will be during a tennis match?}
+
+Bookmaker odds represent expectations before a match. If bookmakers strongly favour a player, this may indicate that the player is expected not only to win, but potentially to win more dominantly. To investigate this, bookmaker confidence was compared with the difference in games won between the winner and loser.
+
+\section{Dataset}
+
+The dataset contains 300,059 professional tennis matches played between 2014 and 2025, ATP and WTA combined (mens and womens divisions). For each match, bookmaker odds, final game scores, and additional match information were available. Four bookmakers were considered: bet365, Betfair, Unibet, and Ladbrokes. Their odds were averaged for each match.
+
+Only completed matches with sufficient bookmaker odds and game-score information were retained, resulting in 251,439 matches for the analysis. Player A represents the eventual winner and Player B the eventual loser. This allows bookmaker expectations before the match to be directly compared with the eventual dominance of the winner.
+
+\section{Data Analysis Method}
+
+Bookmaker odds were converted into implied probabilities and normalised so that the probabilities of the winner and loser summed to one. Bookmaker confidence was then defined as
+
+\[
+\text{Probability difference}=P_A-P_B,
+\]
+
+where $P_A$ is the normalised probability of the eventual winner. A larger value therefore represents greater bookmaker confidence in the eventual winner.
+
+Match dominance was measured using the game margin:
+
+\[
+\text{Game margin}=
+\text{winner's games}-\text{loser's games}.
+\]
+
+A larger game margin indicates a more dominant victory.
+
+Matches were also divided into four categories according to bookmaker confidence: \textit{underdog winner}, \textit{slight favourite}, \textit{moderate favourite}, and \textit{strong favourite}. Pearson correlation was used to measure the relationship between bookmaker confidence and game margin. A one-way ANOVA was used to test whether the mean game margin differed between the four confidence categories.
+
+\section{Main Results}
+
+The average bookmaker odds were 1.79 for the eventual winner and 3.38 for the eventual loser. The mean probability difference was 0.215, meaning that the bookmakers gave the eventual winner an implied probability approximately 21.5 percentage points higher than the loser, on average. The overall mean game margin was 5.49 games.
+
+The average game margin increased consistently with bookmaker confidence:
+
+\begin{center}
+\begin{tabular}{lc}
+\toprule
+\textbf{Confidence category} & \textbf{Mean game margin} \\
+\midrule
+Underdog winner & 4.56 \\
+Slight favourite & 5.06 \\
+Moderate favourite & 5.49 \\
+Strong favourite & 6.812738 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{scatterplot.png}
+        \caption{Probability difference vs. game margin.}
+        \label{fig:scatter}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{boxplot.png}
+        \caption{Game margin by bookmaker-confidence category.}
+        \label{fig:boxplot}
+    \end{subfigure}
+    \caption{Relationship between bookmaker confidence and match dominance.}
+    \label{fig:results}
+\end{figure}
+
+The scatterplot shows a positive relationship between bookmaker confidence and game margin. We can observe that on the upper right part of the scatterplot, larger game's margin are more common where bookmaker confidence is high. The Pearson correlation was $r=0.316$, indicating a moderate positive relationship. Due to the large amount of dataset that was analysed, we could observe that points were still spread out (consequent variation), this is the reason why the $r$ value was not closer to one. The extremely small $p$-value shows that this relationship is statistically significant. 
+The boxplot also shows that the distribution of game margins shifts towards larger values as bookmaker confidence increases, as the "favourite" categories have higher median game margins than the "underdog" category.
+
+The one-way ANOVA gave $F=8742.34$ with an extremely small $p$-value, indicating that the average game margins differ significantly between the four bookmaker-confidence categories.
+
+\section{Conclusion}
+
+The results support the research question: greater bookmaker confidence in the eventual winner is associated with a more dominant victory. Strong favourites won by an average margin of 6.812738 games, compared with 4.56 games when the eventual winner was an underdog.
+
+However, the correlation of $r=0.316$ is moderate rather than strong. Therefore, bookmaker confidence is associated with match dominance but cannot fully predict the size of a player's winning margin. Other factors also contribute to how dominant a tennis victory will be such as home court advantage, surfaced played and player's fatigue
+
+\section*{References}
+
+\begin{itemize}
+    \item Ali Moh, \textit{Tennis Results and Betting Odds (2014--2025)}, Kaggle.\\
+        Available at: \url{https://www.kaggle.com/datasets/alimoh89/tennis-results-and-betting-odds-20142025}
+\end{itemize}
+
+\end{document}
+```
+
